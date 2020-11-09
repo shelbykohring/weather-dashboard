@@ -37,24 +37,26 @@
             <h4 class="search-header mt-3 ml-1 mb-3">
               Search by City:
             </h4>
-            <div class="input-group mb-3 justify-content-center">
+            <form id="city-form" class="input-group mb-3 justify-content-center">
               <input
+                name="city-input"
                 id="city-input"
                 type="text"
+                autofocus="true"
                 class="form-control"
                 placeholder="Enter city name"
-                aria-label="Enter city name"
+            
               />
               <div class="input-group-append">
                 <button
                   class="btn btn-primary"
-                  type="button"
+                  type="submit"
                   id="search-button"
                 >
                   <span class="oi oi-magnifying-glass"></span>
                 </button>
               </div>
-            </div>
+            </form>
             <button
               class="btn btn-primary mb-3"
               type="button"
