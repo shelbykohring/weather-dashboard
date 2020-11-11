@@ -17,8 +17,7 @@ var getCityWeather = function (city) {
     });
   }).then(function(response) {
       saveCity(city);
-  }).then(function(response) {
-      displayCities(cities);
+      displayCities(city);
   });
 };
 
@@ -57,12 +56,15 @@ var saveCity = function (newCity) {
 };
 
 // display the list of searched cities
-var displayCities = function () {
+var displayCities = function (history) {
+  var history = document.querySelector("#history");
     for (var i = 0; i < localStorage.length; i++) {
-        var city = JSON.parse(localStorage.getItem("cities+[i]"));
-        var cityEl = document.querySelector("#history");
+        var city = localStorage.getItem("cities" + i);
+        var historyEl = document.createElement("a");
+        historyEl.classList = "form-control d-flex flex-column m-2";
+        // historyEl.setAttribute = ("href", getCityWeather);
+        historyEl.innerHTML = city;
+        history.appendChild(historyEl);
     }
-    // append city to page
-    $("#cities").appendChild(cityEl);
 }
-    
+displayCities();
