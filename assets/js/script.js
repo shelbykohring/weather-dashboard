@@ -1,6 +1,7 @@
 var cityInputEl = document.querySelector("#city-input");
 var cityFormEl = document.querySelector("#city-form");
 var savedCitiesEl = document.querySelector("#history");
+var clearHistoryBtn = document.querySelector("#clear-history");
 
 var getCityWeather = function (city) {
   // format the github api url
@@ -11,16 +12,17 @@ var getCityWeather = function (city) {
     "&appid=7682a77c64471c5fd05aba694f7c40b8";
 
   // make a request to the url
-  fetch(apiUrl).then(function (response) {
-    response.json().then(function (data) {
-      console.log(data);
-    });
-  }).then(function(response) {
+  fetch(apiUrl)
+    .then(function (response) {
+      response.json().then(function (data) {
+        console.log(data);
+      });
+    })
+    .then(function (response) {
       saveCity(city);
-      displayCities(city);
-  });
+      displayCities(history);
+    });
 };
-
 
 var cityInputHandler = function (event) {
   event.preventDefault();
@@ -56,15 +58,22 @@ var saveCity = function (newCity) {
 };
 
 // display the list of searched cities
-var displayCities = function (history) {
+var displayCities = function () {
   var history = document.querySelector("#history");
-    for (var i = 0; i < localStorage.length; i++) {
-        var city = localStorage.getItem("cities" + i);
-        var historyEl = document.createElement("a");
-        historyEl.classList = "form-control d-flex flex-column m-2";
-        // historyEl.setAttribute = ("href", getCityWeather);
-        historyEl.innerHTML = city;
-        history.appendChild(historyEl);
-    }
-}
+  for (var i = 0; i < localStorage.length; i++) {
+    var city = localStorage.getItem("cities" + i);
+    var historyEl = document.createElement("a");
+    historyEl.classList = "form-control mb-2";
+    // historyEl.setAttribute = ("href", getCityWeather);
+    historyEl.innerHTML = city;
+    history.appendChild(historyEl);
+  }
+};
 displayCities();
+
+var clearHistory = function () {
+  localStorage.clear();
+  displayCities(history);
+}
+
+clearHistoryBtn.addEventListener("click", clearHistory);
