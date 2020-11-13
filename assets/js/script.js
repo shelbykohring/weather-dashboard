@@ -2,6 +2,7 @@ var cityInputEl = document.querySelector("#city-input");
 var cityFormEl = document.querySelector("#city-form");
 var savedCitiesEl = document.querySelector("#history");
 var clearHistoryBtn = document.querySelector("#clear-history");
+var currentDate = moment().format("M/D/YY");
 
 var uvIndex = function (lat, lon) {
   //api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={API key}
@@ -36,12 +37,12 @@ var getFiveDay = function (city) {
       var forecast = data.list;
       var htmlData = [];
       for (let i = 0; i < forecast.length; i = i + 8) {
+        var formatDate = moment().format("dddd");
         var data = `
-        <p> ${forecast[i].dt_txt}</p>
+        <p> ${forecast[i].dt_txt = formatDate} </p>
         <h6>Temperature: ${forecast[i].main.temp}</h6>
         <h6>Humidity: ${forecast[i].main.humidity}</h6>
-        <h6>Wind Speed: ${forecast[i].wind.speed}</h6>
-        <img src="https://openweathermap.org/img/wn/${forecast[i].weather[0].icon}@2x.png"`;
+        <img src="https://openweathermap.org/img/wn/${forecast[i].weather.icon}@2x.png"`;
         htmlData.push(data);
       }
 
@@ -71,7 +72,7 @@ var getCityWeather = function (city) {
         var lat = data.coord.lat;
         var lon = data.coord.lon;
         uvIndex(lat, lon);
-        document.getElementById("city-name").textContent = city;
+        document.getElementById("city-name").textContent = city + " (" + currentDate + ")";
         document.getElementById("temperature").textContent =
           "Temperature: " + data.main.temp;
         document.getElementById("humidity").textContent =
