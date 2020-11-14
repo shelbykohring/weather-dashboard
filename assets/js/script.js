@@ -17,11 +17,15 @@ var uvIndex = function (lat, lon) {
   fetch(apiUrl).then(function (response) {
     response.json().then(function (data) {
       console.log(data);
-      document.getElementById("uv-index").textContent =
-        "UV Index: " + data.value;
+      var uvValue = data.value;
+      var uvFormat = uvValue.toFixed(2);
+      document.getElementById("uv-index").innerHTML =
+        "UV Index: " + uvFormat;
     });
   });
 };
+
+
 
 var getFiveDay = function (city) {
   var apiUrl =
@@ -37,12 +41,15 @@ var getFiveDay = function (city) {
       var forecast = data.list;
       var htmlData = [];
       for (let i = 0; i < forecast.length; i = i + 8) {
-        var formatDate = moment().format("dddd");
+        var dateFormat = forecast[i].dt;
+        var timeZoneOffset = city.timezone;
+        var timeZoneOffsetHours = timeZoneOffset / 60 / 60;
+        var today = moment.unix(dateFormat).utc().utcOffset(timeZoneOffsetHours);
         var data = `
-        <p> ${forecast[i].dt_txt = formatDate} </p>
-        <h6>Temperature: ${forecast[i].main.temp}</h6>
-        <h6>Humidity: ${forecast[i].main.humidity}</h6>
-        <img src="https://openweathermap.org/img/wn/${forecast[i].weather.icon}@2x.png"`;
+        <h6 class="font-weight-bolder mt-3"> ${today.format("dddd")} </h6>
+        <img src="https://openweathermap.org/img/wn/${forecast[i].weather[0].icon}@2x.png"</img>
+        <h6>Temperature: ${parseInt(forecast[i].main.temp)}&#176</h6>
+        <h6 class="mb-4">Humidity: ${forecast[i].main.humidity}&#37</h6>`;
         htmlData.push(data);
       }
 
@@ -72,13 +79,14 @@ var getCityWeather = function (city) {
         var lat = data.coord.lat;
         var lon = data.coord.lon;
         uvIndex(lat, lon);
-        document.getElementById("city-name").textContent = city + " (" + currentDate + ")";
+        document.getElementById("city-name").textContent =
+          city + " (" + currentDate + ")";
         document.getElementById("temperature").textContent =
-          "Temperature: " + data.main.temp;
+          "Temperature: " + parseInt(data.main.temp) + "°";
         document.getElementById("humidity").textContent =
-          "Humidity: " + data.main.humidity;
+          "Humidity: " + data.main.humidity + "%";
         document.getElementById("wind-speed").textContent =
-          "Wind Speed: " + data.wind.speed;
+          "Wind Speed: " + parseInt(data.wind.speed) + " mph";
         document.getElementById("description").textContent =
           data.weather[0].description;
         document
