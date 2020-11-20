@@ -19,13 +19,22 @@ var uvIndex = function (lat, lon) {
       console.log(data);
       var uvValue = data.value;
       var uvFormat = uvValue.toFixed(2);
-      document.getElementById("uv-index").innerHTML =
-        "UV Index: " + uvFormat;
+      // UV Index Color coding conditions
+      if (uvFormat < 3) {
+        document.getElementById("uv-index").innerHTML =
+          "UV Index: " +
+          `<span class=" badge badge-success">${uvFormat}</span>`;
+      } else if (uvFormat > 2.99 && uvFormat < 6) {
+        document.getElementById("uv-index").innerHTML =
+          "UV Index: " +
+          `<span class=" badge badge-warning">${uvFormat}</span>`;
+      } else if (uvFormat > 5.99) {
+        document.getElementById("uv-index").innerHTML =
+          "UV Index: " + `<span class=" badge badge-danger">${uvFormat}</span>`;
+      }
     });
   });
 };
-
-
 
 var getFiveDay = function (city) {
   var apiUrl =
@@ -44,12 +53,17 @@ var getFiveDay = function (city) {
         var dateFormat = forecast[i].dt;
         var timeZoneOffset = city.timezone;
         var timeZoneOffsetHours = timeZoneOffset / 60 / 60;
-        var today = moment.unix(dateFormat).utc().utcOffset(timeZoneOffsetHours);
+        var today = moment
+          .unix(dateFormat)
+          .utc()
+          .utcOffset(timeZoneOffsetHours);
         var data = `
-        <h6 class="font-weight-bolder mt-3"> ${today.format("dddd")} </h6>
-        <img src="https://openweathermap.org/img/wn/${forecast[i].weather[0].icon}@2x.png"</img>
-        <h6>Temperature: ${parseInt(forecast[i].main.temp)}&#176</h6>
-        <h6 class="mb-4">Humidity: ${forecast[i].main.humidity}&#37</h6>`;
+        <h6 class="font-weight-bolder mt-3"> ${today.format("ddd")} </h6>
+        <img src="https://openweathermap.org/img/wn/${
+          forecast[i].weather[0].icon
+        }@2x.png"</img>
+        <h6>Temp: ${parseInt(forecast[i].main.temp)}&#176</h6>
+        <h6 class="mb-4">Hum: ${forecast[i].main.humidity}&#37</h6>`;
         htmlData.push(data);
       }
 
@@ -95,7 +109,7 @@ var getCityWeather = function (city) {
             "src",
             "https://openweathermap.org/img/wn/" +
               data.weather[0].icon +
-              "@2x.png"
+              ".png"
           );
       });
     })

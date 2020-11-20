@@ -74,32 +74,36 @@
           </div>
 
           <div class="col-12 col-md-9">
-            <div class="row min-vh-100 ml-2 mr-2 mb-2 justify-content-center">
+            <div class="row ml-2 mr-2 mb-2 justify-content-center">
               <div class="col-12 border border-dark rounded">
                 <div class="row">
                   <div class="col-12 bg-primary text-light mb-2">
-                    <h2 id="city-name" class="mt-2 mb-2 align-middle"></h2>
+                    <div class="row">
+                      <div class="col">
+                        <h2 id="city-name" class="mt-2 mb-2 align-middle"></h2>
+                      </div>
+                      <div class="col">
+                        <span><img id="weather-icon"></img></span>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-12">
+                  <div class="col-12 m-2">
                     <h5 id="temperature"></h5>
                   </div>
-                  <div class="col-12">
+                  <div class="col-12 m-2">
                     <h5 id="humidity"></h5>
                   </div>
-                  <div class="col-12">
+                  <div class="col-12 m-2">
                     <h5 id="wind-speed"></h5>
                   </div>
-                  <div class="col-12">
+                  <div class="col-12 m-2">
                     <h5 id="uv-index"></h5>
                   </div>
-                  <div class="col-12">
+                  <div class="col-12 d-none">
                     <p>
-                      <h5 id="description"> </h5>
+                      <h5 id="description" class="d-none"> </h5>
                       <span><img id="weather-icon"></img></span>
                     </p>
-                  </div>
-                  <div class="col-12">
-                    
                   </div>
                 </div>
               </div>
@@ -109,20 +113,20 @@
                 <h3>Five Day Forecast: </h3>
               </div>
             </div>
-            <div class="row m-1">
-              <div class="card col forecast bg-primary text-white m-1 rounded">
+            <div class="row justify-content-center m-1">
+              <div class="card col-6 col-md forecast bg-primary text-white m-md-1 m-3 rounded">
                 <div id="day-1" class="font-weight-bold text-center mt-2">Day 1</div>
               </div>
-              <div class="card col forecast bg-primary text-white m-1 rounded">
+              <div class="card col-6 col-md forecast bg-primary text-white m-md-1 m-3 rounded">
                 <div id="day-2" class="font-weight-bold text-center mt-2">Day 2</div>
               </div>
-              <div class="card col forecast bg-primary text-white m-1 rounded">
+              <div class="card col-6 col-md forecast bg-primary text-white m-md-1 m-3 rounded">
                 <div id="day-3" class="font-weight-bold text-center mt-2">Day 3</div>
               </div>
-              <div class="card col forecast bg-primary text-white m-1 rounded">
+              <div class="card col-6 col-md forecast bg-primary text-white m-md-1 m-3 rounded">
                 <div id="day-4" class="font-weight-bold text-center mt-2">Day 4</div>
               </div>
-              <div class="card col forecast bg-primary text-white m-1 rounded">
+              <div class="card col-6 col-md forecast bg-primary text-white m-md-1 m-3 rounded">
                 <div id="day-5" class="font-weight-bold text-center mt-2">Day 5</div>
               </div>
               

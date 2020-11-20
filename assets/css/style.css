@@ -1,24 +1,4 @@
 body {
-    font-family: "Open Sans", sans-serif;
-  }
+  font-family: "Open Sans", sans-serif;
+}
 
-  .uv-low {
-    background-color: #34b934;
-    color: white;
-    padding: 2px 7px 2px 7px;
-    border-radius: 10px;
-  }
-
-  .uv-moderate {
-    background-color: #ecad38;
-    color: white;
-    padding: 2px 7px 2px 7px;
-    border-radius: 10px;
-  }
-
-  .uv-high {
-    background-color: #dd2c1f;
-    color: white;
-    padding: 2px 7px 2px 7px;
-    border-radius: 10px;
-  }
