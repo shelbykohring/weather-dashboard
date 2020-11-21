@@ -3,6 +3,7 @@ var cityFormEl = document.querySelector("#city-form");
 var savedCitiesEl = document.querySelector("#history");
 var clearHistoryBtn = document.querySelector("#clear-history");
 var currentDate = moment().format("M/D/YY");
+var getHistoryBtn = document.querySelector("#history");
 
 var uvIndex = function (lat, lon) {
   //api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={API key}
@@ -153,6 +154,17 @@ var saveCity = function (newCity) {
   }
 };
 
+var getHistoryHandler = function (event) {
+  event.preventDefault();
+  // get value from input element
+  var cityHistory = document.getElementById("history").textContent;
+  var savedCity = event.target.innerText;
+  getCityWeather(savedCity);
+  getFiveDay(savedCity);
+};
+
+getHistoryBtn.addEventListener("click", getHistoryHandler);
+
 // display the list of searched cities
 var displayCities = function () {
   var history = document.querySelector("#history");
@@ -161,7 +173,6 @@ var displayCities = function () {
     var city = localStorage.getItem("cities" + i);
     var historyEl = document.createElement("button");
     historyEl.classList = "form-control mb-2";
-    // historyEl.setAttribute = ("href", getCityWeather);
     historyEl.innerHTML = city;
     history.appendChild(historyEl);
   }
@@ -175,3 +186,4 @@ var clearHistory = function () {
 };
 
 clearHistoryBtn.addEventListener("click", clearHistory);
+
