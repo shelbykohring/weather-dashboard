@@ -14,4 +14,5 @@
 * CSS (including Bootstrap)
 * JavaScript (including jQuery and Moment.js)
 
-[See the Weather-Dashboard Here](https://kohringsw.github.io/weather-dashboard/)
+## See the Weather-Dashboard here:
+[Weather-Dashboard: ](https://kohringsw.github.io/weather-dashboard/)
