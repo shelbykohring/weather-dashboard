@@ -73,7 +73,6 @@ var getFiveDay = function (city) {
       document.getElementById("day-3").innerHTML = htmlData[2];
       document.getElementById("day-4").innerHTML = htmlData[3];
       document.getElementById("day-5").innerHTML = htmlData[4];
-      // document.getElementById("weather-icon").setAttribute("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png")
     });
   });
 };
@@ -108,9 +107,7 @@ var getCityWeather = function (city) {
           .getElementById("weather-icon")
           .setAttribute(
             "src",
-            "https://openweathermap.org/img/wn/" +
-              data.weather[0].icon +
-              ".png"
+            "https://openweathermap.org/img/wn/" + data.weather[0].icon + ".png"
           );
       });
     })
@@ -186,4 +183,3 @@ var clearHistory = function () {
 };
 
 clearHistoryBtn.addEventListener("click", clearHistory);
-
