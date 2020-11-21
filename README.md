@@ -15,4 +15,4 @@
 * JavaScript (including jQuery and Moment.js)
 
 ## See the Weather-Dashboard here:
-[Weather-Dashboard: ](https://kohringsw.github.io/weather-dashboard/)
+[Weather-Dashboard Deployed Application](https://kohringsw.github.io/weather-dashboard/)
